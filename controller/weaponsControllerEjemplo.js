@@ -3,16 +3,21 @@ export const getWeapons = (req, res) => {
 }
 
 export const getWeapon = (req, res) => {
-    const weapon = (initialWeapons.filter(weapon => weapon.name === req.params.name));
-    if (weapon) {
-        res.send(weapon);
+    const weaponName = (initialWeapons.find(weapon => weapon.name === req.params.name));
+    if (weaponName) {
+        res.send(weaponName);
     } else {
-        res.status(404).send("Arma no encontrada");
+        res.status(404).send({message: "Arma no encontrada"});
     }
 }
 
 export const getWeaponsType = (req, res) => {
-    res.send(initialWeapons.filter(weapon => weapon.type === req.params.type));
+    const weaponType = (initialWeapons.filter(weapon => weapon.type === req.params.type));
+    if (weaponType.length > 0) {
+        res.send(weaponType);
+    } else {
+        res.status(404).send({message: "Arma no encontrada"});
+    }
 }
 
 
