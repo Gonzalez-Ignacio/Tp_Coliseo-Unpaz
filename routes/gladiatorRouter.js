@@ -1,9 +1,8 @@
-const express = require("express");
+import { gladiador } from "../controller/gladiatorController.js";
+import express from "express";
 const router = express.Router();
-const gladiadoresController = require("../controllers/gladiatorController");
 
-router.get("/", gladiadoresController.getGladiators);
-router.get("/typeGladiator", gladiadoresController.getGladiator);
-router.get("/:id", gladiadoresController.getGladiator);
+router.get("/name/:name", gladiador.obtenerArma.bind(gladiador));
 
-module.exports = router;
+
+export default router;

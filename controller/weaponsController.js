@@ -1,68 +1,124 @@
+//Armas y Escudos
 class Weapons {
   constructor() {
     this.armas = [];
   }
 
+
+  getWeaponRandomName() {
+    return this.armas[Math.floor(Math.random() * this.armas.length)].name
+  }
+
   addWeapon(weapon) {
     this.armas.push(weapon);
-    console.log(this.armas);
   }
 
-  getWeapons(req, res) {
-    res.send(this.armas);
+  getWeapons() {
+    return this.armas
   }
 
-  getWeapon(req, res) {
-    const weaponName = (this.armas.find(weapon => weapon.name === req.params.name));
+  getWeapon(getWeapon) { //Espada
+    const weaponName = (this.armas.find(weapon => weapon.name === getWeapon));
     if (weaponName) {
-        res.send(weaponName);
+        return weaponName
     } else {
-        res.status(404).send({message: "Arma no encontrada"});
-    }
-  }
-
-  getWeaponsType(req, res) {
-    const weaponType = this.armas.filter(
-      (weapon) => weapon.type === req.params.type
-    );
-    if (weaponType.length > 0) {
-      res.send(weaponType);
-    } else {
-      res.status(404).send({ message: "Arma no encontrada" });
+        return console.log("El arma no existe")
     }
   }
 }
 
 class Weapon {
-  constructor(name, type, damage) {
+  constructor(name, type) {
     this.name = name;
     this.type = type;
-    this.damage = damage;
   }
 }
 
 // Cada tipo de arma(Filo/Contundente) tiene un Daño de Ataque diferente.
 class EdgeWeapon extends Weapon {
-  constructor(name, type, damage) {
-    super(name, type, damage);
-    this.damage = damage; //Damage * longitud de arma
+  constructor(name, type, lengthWeapons) {
+    super(name, type);
+    const lengthWeapon = lengthWeapons
+    const edgeWeapon = Math.random()
+    const damageContributed =  lengthWeapon * edgeWeapon
+    this.damage = Math.floor(damageContributed);
   }
 }
 
 class DevastatingWeapon extends Weapon {
-  constructor(name, type, damage) {
-    super(name, type, damage);
-    this.damage = damage; //Damage * peso de arma
+  constructor(name, type) {
+    super(name, type);
+    const weightWeapon = Math.floor(Math.random() * (70 - 40 + 1)) + 40
+    this.damage =  weightWeapon;
   }
 }
 
 const initialWeapons = [
-  new EdgeWeapon("Espada", "Armas de Filo", 20),
-  new EdgeWeapon("Daga", "Armas de Filo", 15),
-  new EdgeWeapon("Hacha", "Armas de Filo", 25),
-  new DevastatingWeapon("Maza", "Armas Contundentes", 50),
-  new DevastatingWeapon("Martillo", "Armas Contundentes", 40),
+  new EdgeWeapon("Espada", "Armas de Filo", 50),
+  new EdgeWeapon("Daga", "Armas de Filo", 20),
+  new EdgeWeapon("Hacha", "Armas de Filo", 40),
+  new DevastatingWeapon("Maza", "Armas Contundentes"),
+  new DevastatingWeapon("Martillo", "Armas Contundentes"),
 ];
+
+
+
+
+
+
+
+
+//Armaduras
+class Armors {
+  constructor() {
+    this.armors = [];
+  }
+  
+  addArmor(armor) {
+    this.armors.push(armor);
+  }
+  
+  
+  getArmor(getArmor) {
+    const armorName = (this.armors.find(armor => armor.name === getArmor));
+    if (armorName) {
+      return armorName
+    } else {
+      res.status(404).send({message: "Armadura no encontrada"});
+    }
+  }
+
+  getArmorRandomName() {
+    return this.armors[Math.floor(Math.random() * this.armors.length)].name
+  }
+
+}
+
+
+class Helmet {
+  constructor(name, type, defense) {
+    this.name = name;
+    this.type = type;
+    this.defense = defense;
+  }
+}
+
+class shield {
+  constructor(name, type, defense) {
+    this.name = name;
+    this.type = type;
+    this.defense = defense;
+  }
+}
+
+const initialArmors = [
+  new Helmet("Casco con Cresta", "Casco", 20),
+  new shield("Escudo Rectangular", "Escudo", 50),
+];
+
+
+export const armors = new Armors();
+initialArmors.forEach((addArmor) => armors.addArmor(addArmor));
 
 export const weapons = new Weapons();
 initialWeapons.forEach((addWeapon) => weapons.addWeapon(addWeapon));

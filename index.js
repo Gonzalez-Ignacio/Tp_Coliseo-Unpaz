@@ -1,6 +1,6 @@
 import express from "express";
 
-// import gladiatorRouter from "./routes/gladiatorRouter.js";
+import gladiatorRouter from "./routes/gladiatorRouter.js";
 import weaponsRouter from "./routes/weaponsRouter.js";
 
 const app = express();
@@ -16,7 +16,5 @@ app.get('/', (req, res) => {
 });
 
 // Rutas
-// app.use("/gladiators", gladiatorRouter);
+app.use("/gladiators", gladiatorRouter);
 app.use("/weapons", weaponsRouter);
-
-
