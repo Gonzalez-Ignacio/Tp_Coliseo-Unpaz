@@ -1,5 +1,13 @@
-class coliseo{
-    gladiadores=[]
+import { gladiadores } from "./gladiatorController.js"
+
+class Coliseo{
+    constructor(){
+        this.gladiadores=[]
+    }
+
+    mostrarGladiadores(){
+        console.log(this.gladiadores)
+    }
 
     añadirGladiador(gladiadores){
         for(let gladiador of gladiadores){
@@ -13,14 +21,22 @@ class coliseo{
             const eliminar= this.gladiadores.findIndex(guerrero=> guerrero.nombre===gladiador)
             this.gladiadores.splice(eliminar,1)
         } else{
-            console.log(`El gladiador, ${gladiador}, no está registrado en el coliseo`)
+            console.log(`El gladiador, ${gladiador}, no está registrado en el Coliseo`)
         }
     };
 
     pelea(gladiador1, gladiador2){
+        if(this.gladiadores.some(guerrero=> guerrero.nombre===gladiador1) && this.gladiadores.some(guerrero=>guerrero.nombre===gladiador2)){
+            console.log("Los gladiadores se preparan para pelear")
+        } else {
+            console.log("uno de los gladiadores no está registrado, no hay pelea")
+            return
+        }
+
+
         while(true){
-            guerrero1= this.gladiadores.find(guerrero=> guerrero.nombre===gladiador1)
-            guerrero2= this.gladiadores.find(guerrero=> guerrero.nombre===gladiador2)
+            const guerrero1= this.gladiadores.find(guerrero=> guerrero.nombre===gladiador1)
+            const guerrero2= this.gladiadores.find(guerrero=> guerrero.nombre===gladiador2)
 
             while(true){
                 guerrero1.atacar(guerrero2)
@@ -35,12 +51,23 @@ class coliseo{
                     break
                 } else if(guerrero2.vida===0){
                     console.log(`${guerrero2.nombre} ha caído! ${guerrero1.nombre} es el vencedor!`)
+                    break
                 } else if(guerrero1.vida===0 && guerrero2.vida===0){
                     console.log("Los gladiadores han caído! es un empate!")
+                    break
                 } else{
                     continue
                 }
             }
+            break
         }
     }
 }
+
+
+export const coliseo = new Coliseo();
+
+coliseo.añadirGladiador(gladiadores.gladiadores)
+console.log("--------------------------------------------------------------------------------------------------------------------------------------")
+coliseo.mostrarGladiadores()
+coliseo.pelea("krotos", "dante")

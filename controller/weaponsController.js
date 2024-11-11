@@ -112,8 +112,8 @@ class shield {
 }
 
 const initialArmors = [
-  new Helmet("Casco con Cresta", "Casco", 20),
-  new shield("Escudo Rectangular", "Escudo", 50),
+  new Helmet("Casco con Cresta", "Casco", 5),
+  new shield("Escudo Rectangular", "Escudo", 10),
 ];
 
 

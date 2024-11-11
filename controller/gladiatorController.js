@@ -1,5 +1,22 @@
 import { armors, weapons } from "./weaponsController.js"
 
+class Gladiadores {
+    constructor() {
+        this.gladiadores = [];
+    }
+
+    agregarGladiadores(gladiadores) {
+        for(let guerrero of gladiadores){
+            this.gladiadores.push(guerrero);
+        }
+        
+    }
+
+    mostrarGladiadores() {
+        console.log("gladiadores -->", this.gladiadores);
+    }
+}
+
 class gladiator {
     constructor(nombre,vida,destreza,fuerza, armadura, defensa){
         this.nombre=nombre
@@ -15,23 +32,24 @@ class mirmillones extends gladiator{
     constructor(nombre,arma, armadura, fuerza){
         super(nombre,fuerza, armadura)
         this.arma=arma
-        this.defensa = defensa
+        this.defensa = 0
+        this.fuerza = fuerza
     }
     vida=100
     destreza=15
-    defensa= this.armadura.defense + this.destreza
 
     obtenerArma(Arma){
         this.arma= weapons.getWeapon(Arma)
     }
 
     obtenerArmadura(Armadura){
-        this.armadura= armors.getArmor(Armadura)
+        this.armadura= armors.getArmor(Armadura).name
+        this.defensa = armors.getArmor(Armadura).defense + this.destreza
     }
 
     atacar(enemigo){
         const ataque= this.arma.damage + this.fuerza
-        const damage= ataque - enemigo.armadura
+        let damage= ataque - enemigo.defensa
         
         if(damage<0){
             damage=0
@@ -50,11 +68,13 @@ class dimachaerus extends gladiator{
         super(nombre, destreza)
         this.arma1=arma1,
         this.arma2=arma2
+        this.destreza=destreza
+        this.defensa = Math.floor(this.destreza/2)
     }
+
     vida=100
     fuerza=10
     armadura=0
-    defensa= Math.floor(this.destreza/2)
 
     obtenerArma(arma01,arma02){
         this.arma1= weapons.getWeapon(arma01),
@@ -63,7 +83,7 @@ class dimachaerus extends gladiator{
 
     atacar(enemigo){
         const ataque= this.arma1.damage + this.arma2.damage + this.fuerza
-        const damage= ataque - enemigo.armadura
+        const damage= ataque - enemigo.defensa
 
         if(damage<0){
             damage=0
@@ -80,7 +100,7 @@ class dimachaerus extends gladiator{
     }
 }
 
-export const gladiador= new mirmillones(0,0,10)
+export const gladiador= new mirmillones("nombre",0,0,10)
 
 
 
@@ -103,10 +123,7 @@ listaDimachaerus.forEach(gladiador=> gladiador.obtenerArma(weapons.getWeaponRand
 
 listaMirmillones.forEach(gladiador=> gladiador.obtenerArmadura(armors.getArmorRandomName()))
 
-console.log(listaDimachaerus)
-console.log(listaMirmillones)
-
-
-// Armaduras
-//      new Helmet("Casco con Cresta", "Casco", 20),
-//      new shield("Escudo Rectangular", "Escudo", 50),
+export const gladiadores= new Gladiadores()
+gladiadores.agregarGladiadores(listaMirmillones)
+gladiadores.agregarGladiadores(listaDimachaerus)
+// gladiadores.mostrarGladiadores()
