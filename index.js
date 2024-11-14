@@ -1,7 +1,4 @@
 import express from "express";
-
-import gladiatorRouter from "./routes/gladiatorRouter.js";
-import weaponsRouter from "./routes/weaponsRouter.js";
 import coliseoRouter from "./routes/coliseoRouter.js"
 
 const app = express();
@@ -17,6 +14,4 @@ app.get('/', (req, res) => {
 });
 
 // Rutas
-app.use("/gladiators", gladiatorRouter);
-app.use("/weapons", weaponsRouter);
 app.use("/coliseo", coliseoRouter);

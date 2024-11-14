@@ -103,7 +103,7 @@ class Helmet {
   }
 }
 
-class shield {
+class Shield {
   constructor(name, type, defense) {
     this.name = name;
     this.type = type;
@@ -113,7 +113,7 @@ class shield {
 
 const initialArmors = [
   new Helmet("Casco con Cresta", "Casco", 5),
-  new shield("Escudo Rectangular", "Escudo", 10),
+  new Shield("Escudo Rectangular", "Escudo", 10),
 ];
 
 

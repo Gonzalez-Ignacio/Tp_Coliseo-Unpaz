@@ -17,7 +17,7 @@ class Gladiadores {
     }
 }
 
-class gladiator {
+class Gladiator {
     constructor(nombre,vida,destreza,fuerza, armadura, defensa){
         this.nombre=nombre
         this.vida=vida,
@@ -28,10 +28,9 @@ class gladiator {
     }
 }
 
-class mirmillones extends gladiator{
-    constructor(nombre,arma, armadura, fuerza){
-        super(nombre,fuerza, armadura)
-        this.arma=arma
+class Mirmillones extends Gladiator{
+    constructor(nombre, fuerza){
+        super(nombre,fuerza)
         this.defensa = 0
         this.fuerza = fuerza
     }
@@ -63,11 +62,9 @@ class mirmillones extends gladiator{
     }
 }
 
-class dimachaerus extends gladiator{
-    constructor(nombre,destreza, arma1, arma2,){
+class Dimachaerus extends Gladiator{
+    constructor(nombre,destreza){
         super(nombre, destreza)
-        this.arma1=arma1,
-        this.arma2=arma2
         this.destreza=destreza
         this.defensa = Math.floor(this.destreza/2)
     }
@@ -100,19 +97,19 @@ class dimachaerus extends gladiator{
     }
 }
 
-export const gladiador= new mirmillones("nombre",0,0,10)
+export const gladiador= new Mirmillones("nombre",0,0,10)
 
 
 
 const listaMirmillones=[
-    new mirmillones("krotos",0,0,15),
-    new mirmillones("deimos",0,0,20),
-    new mirmillones("dante",0,0,25)]
+    new Mirmillones("krotos",15),
+    new Mirmillones("deimos",20),
+    new Mirmillones("dante",25)]
 
 const listaDimachaerus = [
-    new dimachaerus("ferra",10,0,0),
-    new dimachaerus("leonidas",15,0,0),
-    new dimachaerus("pantheon",20,0,0),
+    new Dimachaerus("ferra",10),
+    new Dimachaerus("leonidas",15),
+    new Dimachaerus("pantheon",20),
 ]
 
 
@@ -126,4 +123,3 @@ listaMirmillones.forEach(gladiador=> gladiador.obtenerArmadura(armors.getArmorRa
 export const gladiadores= new Gladiadores()
 gladiadores.agregarGladiadores(listaMirmillones)
 gladiadores.agregarGladiadores(listaDimachaerus)
-// gladiadores.mostrarGladiadores()

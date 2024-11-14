@@ -46,14 +46,14 @@ class Coliseo{
                 console.log(`la vida de ${guerrero1.nombre} queda en: ${guerrero1.vida} puntos!`)
                 console.log(`la vida de ${guerrero2.nombre} queda en: ${guerrero2.vida} puntos!`)
 
-                if(guerrero1.vida===0){
-                    console.log(`${guerrero1.nombre} ha caído! ${guerrero2.nombre} es el vencedor!`)
+                if(guerrero1.vida===0 && guerrero2.vida===0){
+                    console.log("Los gladiadores han caído! es un empate!")
                     break
                 } else if(guerrero2.vida===0){
                     console.log(`${guerrero2.nombre} ha caído! ${guerrero1.nombre} es el vencedor!`)
                     break
-                } else if(guerrero1.vida===0 && guerrero2.vida===0){
-                    console.log("Los gladiadores han caído! es un empate!")
+                } else if(guerrero1.vida===0){
+                    console.log(`${guerrero1.nombre} ha caído! ${guerrero2.nombre} es el vencedor!`)
                     break
                 } else{
                     continue
@@ -67,7 +67,7 @@ class Coliseo{
 
 export const coliseo = new Coliseo();
 
+//Cuando se añaden los guerreros, estos se mostraran en la consola para saber que gladiadores están registrados en el coliseo
 coliseo.añadirGladiador(gladiadores.gladiadores)
 console.log("--------------------------------------------------------------------------------------------------------------------------------------")
-coliseo.mostrarGladiadores()
-coliseo.pelea("krotos", "dante")
+coliseo.pelea("leonidas", "ferra")
